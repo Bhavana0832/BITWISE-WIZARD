@@ -90,8 +90,8 @@ moviestream/
 - Request Body:
   json
   {
-    "email": "johndoe@example.com",
-    "password": "securepassword"
+    "email": "srikarreddy@example.com",
+    "password": "12345678"
   }
 
 - Response:
