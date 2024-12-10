@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Streaming</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #1c1c1c;
+            padding: 15px;
+            text-align: center;
+            position: relative; /* Added to position the profile menu */
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 4px;
+        }
+        .header {
+            text-align: center;
+            padding: 50px;
+            background-color: #1e1e1e;
+        }
+        .header h1 {
+            font-size: 3em;
+        }
+        .search-bar {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center; /* Center the search bar */
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 50px; /* Circular shape */
+            font-size: 16px;
+            margin-right: 10px; /* Space between input and button */
+        }
+        .search-button {
+            padding: 10px 15px;
+            background-color: #575757;
+            border: none;
+            border-radius: 50px; /* Circular shape */
+            color: white;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #6b6b6b;
+        }
+        /* Slider Styles */
+        .slider {
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            overflow: hidden;
+            position: relative;
+            height: 500px; /* Fixed height for the slider */
+        }
+        .slider img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: none; /* Initially hide all images */
+        }
+        /* Dots Container */
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #575757;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .active {
+            background-color: #ffffff; /* Color for the active dot */
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .movie {
+            background-color: #1e1e1e;
+            padding: 0px;
+            border-radius: 10px;
+            text-align: center;
+            border: none; /* Remove border for button */
+            cursor: pointer; /* Change cursor to pointer */
+            color: white; /* Set button text color to white */
+        }
+        .movie img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .movie-title {
+            margin: 12px 0;
+        }
+        /* User Icon Styles */
+        .user-icon {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #575757;
+            border-radius: 50%; /* Circle shape */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .user-icon:hover {
+            background-color: #6b6b6b;
+        }
+        /* Profile Menu Styles */
+        .profile-menu {
+            display: none;
+            position: absolute;
+            right: 20px;
+            top: 50px;
+            background-color: #1c1c1c;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000; /* Ensure it's above other elements */
+        }
+        .profile-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+        }
+        .profile-menu a:hover {
+            background-color: #575757;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="series.html">Series</a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Welcome to MovieStream</h1>
+        <p>Watch your favorite movies online</p>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" class="search-input" id="movieSearchInput" placeholder="Search for movies...">
+            <button class="search-button" onclick="searchMovie()">Search</button>
+        </div>
+    </div>
+
+    <!-- Movie Slider -->
+    <div class="slider">
+        <img src="images/the_boys_slider.jpg" alt="Movie 1" class="slide active">
+        <img src="images/the_lord_of_the_rings_the_rings_of_power-p1627052.jpg" alt="Movie 2" class="slide">
+        <img src="images/brooklyn_nine_nine-p1509171.jpg" alt="Movie 3" class="slide">
+        <img src="images/peaky_blinders-slider.jpg" alt="Movie 4" class="slide">
+        <img src="images/moon_knight-p1613219.jpg" alt="Movie 5" class="slide">
+    </div>
+    <div class="dots">
+        <span class="dot active" onclick="showSlide(0)"></span>
+        <span class="dot" onclick="showSlide(1)"></span>
+        <span class="dot" onclick="showSlide(2)"></span>
+        <span class="dot" onclick="showSlide(3)"></span>
+        <span class="dot" onclick="showSlide(4)"></span>
+    </div>
+
+    <!-- Movie Grid Section -->
+    <h2 style="text-align: center; color: rgb(255, 255, 255);">Movies</h2>
+    <div class="movie-grid">
+        <button class="movie" onclick="window.open('the-boys.html', '_blank')">
+            <img src="images/The Boys (2019).jpeg" alt="Movie Poster 1">
+            <div class="movie-title">The Boys</div>
+        </button>
+        <button class="movie" onclick="window.open('Brooklyn-Nine-Nine.html', '_blank')">
+            <img src="images/brooklyn_nine_nine-post.jpg" alt="Movie Poster 2">
+            <div class="movie-title">Brooklyn Nine-Nine</div>
+        </button>
+        <button class="movie" onclick="window.open('Modern-Family.html', '_blank')">
+            <img src="images/modern_family-post.jpg" alt="Movie Poster 3">
+            <div class="movie-title">Modern Family</div>
+        </button>
+        <button class="movie" onclick="window.open('got.html', '_blank')">
+            <img src="images/Game of Thrones (2011).jpeg" alt="Movie Poster 4">
+            <div class="movie-title">Game of Thrones</div>
+        </button>
+        <button class="movie" onclick="window.open('house-dragon.html', '_blank')">
+            <img src="images/house_of_the_dragon-post.jpg" alt="Movie Poster 5">
+            <div class="movie-title">House of the Dragon</div>
+        </button>
+        <button class="movie" onclick="window.open('rings-of-power.html', '_blank')">
+            <img src="images/the rings of power  post.jpg" alt="Movie Poster 6">
+            <div class="movie-title">The Lord of the Rings: The Rings of Power</div>
+        </button>
+        <button class="movie" onclick="window.open('moon-knight.html', '_blank')">
+            <img src="images/Moon Knight post.png" alt="Movie Poster 7">
+            <div class="movie-title">Moon Knight</div>
+        </button>
+        <button class="movie" onclick="window.open('young-sheldon.html', '_blank')">
+            <img src="images/Young Sheldon post.png" alt="Movie Poster 8">
+            <div class="movie-title">Young Sheldon</div>
+        </button>
+        <button class="movie" onclick="window.open('rickandm.html', '_blank')">
+            <img src="images/Rick and Morty (2013).jpg" alt="Movie Poster 9">
+            <div class="movie-title">Rick and Morty</div>
+        </button>
+    </div>
+    
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const slideInterval = 5000; // Slide change interval in milliseconds
+        let autoSlideInterval;
+    
+        // Initialize the slider by showing the first slide
+        function initSlider() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none'; // Hide all slides initially
+            }
+            slides[0].style.display = 'block'; // Show the first slide
+            dots[0].classList.add('active'); // Set the first dot as active
+    
+            autoSlideInterval = setInterval(nextSlide, slideInterval); // Start auto sliding
+        }
+    
+        // Show a specific slide
+        function showSlide(index) {
+            slides[currentSlide].style.display = 'none'; // Hide the current slide
+            dots[currentSlide].classList.remove('active'); // Remove active class from the dot
+    
+            currentSlide = index; // Update current slide index
+    
+            slides[currentSlide].style.display = 'block'; // Show the new slide
+            dots[currentSlide].classList.add('active'); // Add active class to the new dot
+        }
+    
+        // Go to the next slide
+        function nextSlide() {
+            const nextIndex = (currentSlide + 1) % slides.length; // Loop to the first slide
+            showSlide(nextIndex);
+        }
+    
+        // Add click event to dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                clearInterval(autoSlideInterval); // Stop auto sliding when a dot is clicked
+                autoSlideInterval = setInterval(nextSlide, slideInterval); // Restart auto sliding
+            });
+        });
+    
+        // Profile Menu Toggle
+        function toggleProfileMenu() {
+            const profileMenu = document.getElementById('profileMenu');
+            profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+        }
+    
+        // Check session logic (unchanged)
+        async function checkSession() {
+            try {
+                const response = await fetch('/check-session');
+                const data = await response.json();
+    
+                if (data.loggedIn) {
+                    document.getElementById('logoutButton').style.display = 'block';
+                } else {
+                    document.getElementById('logoutButton').style.display = 'none';
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error checking session:', error);
+            }
+        }
+    
+        document.getElementById('logoutButton').addEventListener('click', async function () {
+            try {
+                const response = await fetch('/logout', { method: 'POST' });
+    
+                if (response.ok) {
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+    
+        // Call checkSession on page load
+        checkSession();
+    </script>
+    
+    <script>
+        // Movie Dataset (Movie Name -> URL)
+        const movieDataset = {
+            "The Boys": "the-boys.html",
+            "Brooklyn Nine-Nine": "Brooklyn-Nine-Nine.html",
+            "Modern Family": "Modern-Family.html",
+            "Game of Thrones": "got.html",
+            "House of the Dragon": "house-dragon.html",
+            "The Lord of the Rings: The Rings of Power": "rings-of-power.html",
+            "Moon Knight": "moon-knight.html",
+            "Young Sheldon": "young-sheldon.html",
+            "Rick and Morty": "rickandm.html"
+        };
+    
+        // Series Dataset (Series Name -> URL)
+        const seriesDataset = {
+            "The Boys": "the-boys.html",
+            "Brooklyn Nine-Nine": "Brooklyn-Nine-Nine.html",
+            "Modern Family": "Modern-Family.html",
+            "Game of Thrones": "got.html",
+            "House of the Dragon": "house-dragon.html",
+            "The Lord of the Rings: The Rings of Power": "rings-of-power.html",
+            "Moon Knight": "moon-knight.html",
+            "Young Sheldon": "young-sheldon.html",
+            "Rick and Morty": "rickandm.html"
+        };
+    
+        // Function to search movie or series from the dataset
+        function searchMovie() {
+            const searchQuery = document.getElementById('movieSearchInput').value.trim().toLowerCase();
+    
+            // Normalize dataset keys and search for the query
+            const moviePage = Object.keys(movieDataset).find(movie => movie.toLowerCase() === searchQuery);
+    
+            // If found in the movie dataset
+            if (moviePage) {
+                window.location.href = movieDataset[moviePage]; // Redirect to the movie page
+                alert("Movie found!"); // Show message
+            } else {
+                // Then check in the series dataset
+                const seriesPage = Object.keys(seriesDataset).find(series => series.toLowerCase() === searchQuery);
+    
+                if (seriesPage) {
+                    window.location.href = seriesDataset[seriesPage]; // Redirect to the series page
+                    alert("Series found!"); // Show message
+                } else {
+                    alert("Movie or Series not found. Please try again.");
+                }
+            }
+        }
+    
+        // Adding event listener to the input for 'Enter' key to trigger search
+        document.getElementById('movieSearchInput').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {  // Trigger search on pressing 'Enter'
+                searchMovie();
+            }
+        });
+    </script>
+    
+    
+    
+</body>
+</html>

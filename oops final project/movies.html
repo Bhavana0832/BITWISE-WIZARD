@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Streaming</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #1c1c1c;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 4px;
+        }
+        .header {
+            text-align: center;
+            padding: 50px;
+            background-color: #1e1e1e;
+        }
+        .header h1 {
+            font-size: 3em;
+        }
+        .search-bar {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .search-button {
+            padding: 10px 15px;
+            background-color: #575757;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #6b6b6b;
+        }
+        .slider {
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            overflow: hidden;
+            position: relative;
+            height: 500px;
+        }
+        .slider img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: none;
+        }
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .active {
+            background-color: #ffffff;
+        }
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .movie {
+            background-color: #1e1e1e;
+            padding: 0px;
+            border-radius: 10px;
+            text-align: center;
+            border: none;
+        }
+        .movie img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 0px;
+        }
+        .movie-title {
+            margin: 12px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="series.html">Series</a>
+    </div>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Welcome to MovieStream</h1>
+        <p>Watch your favorite movies online</p>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="movieSearchInput" class="search-input" placeholder="Search for a movie..." />
+            <button class="search-button" id="searchButton">Search</button>
+        </div>
+    </div>
+
+    <!-- Movie Slider -->
+    <div class="slider">
+        <img src="images/dune-slider.jpg" alt="Movie 2" class="slide">
+        <img src="images/spider_man_homecoming-slider2.jpg" alt="Movie 3" class="slide">
+        <img src="images/joker-slider.jpg" alt="Movie 4" class="slide">
+        <img src="images/dead11.jpg" alt="Movie 5" class="slide">
+    </div>
+    <div class="dots">
+        <span class="dot active" onclick="showSlide(0)"></span>
+        <span class="dot" onclick="showSlide(1)"></span>
+        <span class="dot" onclick="showSlide(2)"></span>
+        <span class="dot" onclick="showSlide(3)"></span>
+        <span class="dot" onclick="showSlide(4)"></span>
+    </div>
+
+    <!-- Movie Grid Section -->
+    <h2 style="text-align: center; color: rgb(255, 255, 255);">Movies</h2>
+    <div class="movie-grid">
+        <button class="movie" onclick="window.open('american-psycho.html', '_blank')">
+            <img src="images/American Psycho (2000).jpeg" alt="Movie Poster 1">
+            <div class="movie-title">American Psycho (2000)</div>
+        </button>
+        <button class="movie" onclick="window.open('everything-everywhere.html', '_blank')">
+            <img src="images/Everything Everywhere All at Once (2022).jpg" alt="Movie Poster 2">
+            <div class="movie-title">Everything Everywhere All At Once (2022)</div>
+        </button>
+        <button class="movie" onclick="window.open('fight-club.html', '_blank')">
+            <img src="images/Fight Club (1999).jpeg" alt="Movie Poster 3">
+            <div class="movie-title">Fight Club</div>
+        </button>
+        <button class="movie" onclick="window.open('ford-v-ferrari.html', '_blank')">
+            <img src="images/Ford v Ferrari (2019).png" alt="Movie Poster 4">
+            <div class="movie-title">Ford V Ferrari (2019)</div>
+        </button>
+        <button class="movie" onclick="window.open('ghost-in-the-shell.html', '_blank')">
+            <img src="images/Ghost in the Shell (2017).jpg" alt="Movie Poster 5">
+            <div class="movie-title">Ghost In The Shell (2017)</div>
+        </button>
+        <button class="movie" onclick="window.open('ghostbusters-frozen-empire.html', '_blank')">
+            <img src="images/Ghostbusters- Frozen Empire (2024).png" alt="Movie Poster 6">
+            <div class="movie-title">Ghostbusters: Frozen Empire</div>
+        </button>
+        <button class="movie" onclick="window.open('gifted.html', '_blank')">
+            <img src="images/Gifted (2017).jpg" alt="Movie Poster 7">
+            <div class="movie-title">Gifted (2017)</div>
+        </button>
+        <button class="movie" onclick="window.open('goodfellas.html', '_blank')">
+            <img src="images/GoodFellas (1990).jpg" alt="Movie Poster 8">
+            <div class="movie-title">Goodfellas (1990)</div>
+        </button>
+        <button class="movie" onclick="window.open('inglourious-basterds.html', '_blank')">
+            <img src="images/Inglourious Basterds (2009).jpeg" alt="Movie Poster 9">
+            <div class="movie-title">Inglourious Basterds (2009)</div>
+        </button>
+        <button class="movie" onclick="window.open('iron-man.html', '_blank')">
+            <img src="images/Iron Man (2008).jpg" alt="Movie Poster 10">
+            <div class="movie-title">Iron Man (2008)</div>
+        </button>
+        <button class="movie" onclick="window.open('now-you-see-me.html', '_blank')">
+            <img src="images/Now You See Me (2013).jpeg" alt="Movie Poster 11">
+            <div class="movie-title">Now You See Me (2013)</div>
+        </button>
+        <button class="movie" onclick="window.open('once-upon-a-time-hollywood.html', '_blank')">
+            <img src="images/Once Upon A Time... In Hollywood (2019).jpeg" alt="Movie Poster 12">
+            <div class="movie-title">Once Upon A Time... In Hollywood (2019)</div>
+        </button>
+        <button class="movie" onclick="window.open('oppenheimer.html', '_blank')">
+            <img src="images/Oppenheimer (2023).jpg" alt="Movie Poster 13">
+            <div class="movie-title">Oppenheimer (2023)</div>
+        </button>
+        <button class="movie" onclick="window.open('parasite.html', '_blank')">
+            <img src="images/Parasite (2019).jpeg" alt="Movie Poster 14">
+            <div class="movie-title">Parasite (2019)</div>
+        </button>
+        <button class="movie" onclick="window.open('rush-hour.html', '_blank')">
+            <img src="images/Rush Hour (1998).png" alt="Movie Poster 15">
+            <div class="movie-title">Rush Hour (1998)</div>
+        </button>
+        <button class="movie" onclick="window.open('rush-hour-2.html', '_blank')">
+            <img src="images/Rush Hour 2 (2001).png" alt="Movie Poster 16">
+            <div class="movie-title">Rush Hour 2 (2001)</div>
+        </button>
+        <button class="movie" onclick="window.open('rush-hour-3.html', '_blank')">
+            <img src="images/Rush Hour 3 (2007).jpeg" alt="Movie Poster 17">
+            <div class="movie-title">Rush Hour 3 (2007)</div>
+        </button>
+        <button class="movie" onclick="window.open('saving-private-ryan.html', '_blank')">
+            <img src="images/Saving Private Ryan (1998).jpg" alt="Movie Poster 18">
+            <div class="movie-title">Saving Private Ryan</div>
+        </button>
+        <button class="movie" onclick="window.open('taken.html', '_blank')">
+            <img src="images/Taken (2008).png" alt="Movie Poster 19">
+            <div class="movie-title">Taken (2008)</div>
+        </button>
+        <button class="movie" onclick="window.open('the-godfather.html', '_blank')">
+            <img src="images/The Godfather (1972).png" alt="Movie Poster 20">
+            <div class="movie-title">The Godfather (1972)</div>
+        </button>
+        <button class="movie" onclick="window.open('shawshank-redemption.html', '_blank')">
+            <img src="images/The Shawshank Redemption (1994).png" alt="Movie Poster 21">
+            <div class="movie-title">The Shawshank Redemption</div>
+        </button>
+        <button class="movie" onclick="window.open('silence-of-the-lambs.html', '_blank')">
+            <img src="images/The Silence of the Lambs (1991).jpg" alt="Movie Poster 22">
+            <div class="movie-title">The Silence Of The Lambs (1991)</div>
+        </button>
+        <button class="movie" onclick="window.open('tumbbad.html', '_blank')">
+            <img src="images/Tumbbad (2018).png" alt="Movie Poster 23">
+            <div class="movie-title">Tumbbad (2018)</div>
+        </button>
+        <button class="movie" onclick="window.open('wonka.html', '_blank')">
+            <img src="images/Wonka (2023).jpg" alt="Movie Poster 24">
+            <div class="movie-title">Wonka (2023)</div>
+        </button>
+        <button class="movie" onclick="window.open('american-assassin.html', '_blank')">
+            <img src="images/American Assassin (2017).png" alt="Movie Poster 25">
+            <div class="movie-title">American Assassin (2017)</div>
+        </button>
+        <button class="movie" onclick="window.open('avengers-endgame.html', '_blank')">
+            <img src="images/Avengers- Endgame (2019).jpeg" alt="Movie Poster 26">
+            <div class="movie-title">Avengers Endgame (2019)</div>
+        </button>
+        <button class="movie" onclick="window.open('deadpool-wolverine.html', '_blank')">
+            <img src="images/Deadpool & Wolverine (2024).png" alt="Movie Poster 27">
+            <div class="movie-title">Deadpool and Wolverine (2024)</div>
+        </button>
+        <button class="movie" onclick="window.open('dune-part-two.html', '_blank')">
+            <img src="images/Dune- Part Two (2024).jpg" alt="Movie Poster 28">
+            <div class="movie-title">Dune_ Part Two (2024)</div>
+        </button>
+        <button class="movie" onclick="window.open('inter.html', '_blank')">
+            <img src="images/Interstellar (2014).jpg" alt="Movie Poster 29">
+            <div class="movie-title">Interstellar</div>
+        </button>
+        <button class="movie" onclick="window.open('dark-knight.html', '_blank')">
+            <img src="images/The Dark Knight Rises (2012).png" alt="Movie Poster 30">
+            <div class="movie-title">The Dark Knight Rises</div>
+        </button>
+        <button class="movie" onclick="window.open('spi-hom.html', '_blank')">
+            <img src="images/Spider-Man- Homecoming (2017).jpeg" alt="Movie Poster 31">
+            <div class="movie-title">Spider-Man: Homecoming</div>
+        </button>
+    </div>
+    
+
+    <script>
+        let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const slideInterval = 5000; // Slide change interval in milliseconds
+let autoSlideInterval;
+
+// Initialize the slider by showing the first slide
+function initSlider() {
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none'; // Hide all slides initially
+    }
+    slides[0].style.display = 'block'; // Show the first slide
+    dots[0].classList.add('active'); // Set the first dot as active
+
+    autoSlideInterval = setInterval(nextSlide, slideInterval); // Start auto sliding
+}
+
+// Show a specific slide
+function showSlide(index) {
+    slides[currentSlide].style.display = 'none'; // Hide the current slide
+    dots[currentSlide].classList.remove('active'); // Remove active class from the dot
+
+    currentSlide = index; // Update current slide index
+
+    slides[currentSlide].style.display = 'block'; // Show the new slide
+    dots[currentSlide].classList.add('active'); // Add active class to the new dot
+}
+
+// Go to the next slide
+function nextSlide() {
+    const nextIndex = (currentSlide + 1) % slides.length; // Loop to the first slide
+    showSlide(nextIndex);
+}
+
+// Add click event to dots
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        showSlide(index);
+        clearInterval(autoSlideInterval); // Stop auto sliding when a dot is clicked
+        autoSlideInterval = setInterval(nextSlide, slideInterval); // Restart auto sliding
+    });
+});
+
+
+        // Updated Movie Data with poster and link
+        const movieData = [
+            { name: "American Psycho", year_of_release: 2000, poster: "images/American Psycho (2000).jpeg", link: "american-psycho.html" },
+            { name: "Everything Everywhere All At Once", year_of_release: 2022, poster: "images/Everything Everywhere All at Once (2022).jpg", link: "everything-everywhere.html" },
+            { name: "Fight Club", year_of_release: 1999, poster: "images/Fight Club (1999).jpeg", link: "fight-club.html" },
+            { name: "Ford V Ferrari", year_of_release: 2019, poster: "images/Ford v Ferrari (2019).png", link: "ford-v-ferrari.html" },
+            { name: "Ghost In The Shell", year_of_release: 2017, poster: "images/Ghost in the Shell (2017).jpg", link: "ghost-in-the-shell.html" },
+            { name: "Gifted", year_of_release: 2017, poster: "images/Gifted (2017).jpg", link: "gifted.html" },
+            { name: "Goodfellas", year_of_release: 1990, poster: "images/Goodfellas (1990).jpg", link: "goodfellas.html" },
+            { name: "Inglourious Basterds", year_of_release: 2009, poster: "images/Inglourious Basterds (2009).jpg", link: "inglourious-basterds.html" },
+            { name: "Now You See Me", year_of_release: 2013, poster: "images/Now You See Me (2013).jpg", link: "now-you-see-me.html" },
+            { name: "Oppenheimer", year_of_release: 2023, poster: "images/Oppenheimer (2023).jpg", link: "oppenheimer.html" },
+            { name: "Parasite", year_of_release: 2019, poster: "images/Parasite (2019).jpg", link: "parasite.html" },
+            { name: "Rush Hour", year_of_release: 1998, poster: "images/Rush Hour (1998).jpg", link: "rush-hour.html" },
+            { name: "Rush Hour 2", year_of_release: 2001, poster: "images/Rush Hour 2 (2001).jpg", link: "rush-hour-2.html" },
+            { name: "Rush Hour 3", year_of_release: 2007, poster: "images/Rush Hour 3 (2007).jpg", link: "rush-hour-3.html" },
+            { name: "Taken", year_of_release: 2008, poster: "images/Taken (2008).jpg", link: "taken.html" },
+            { name: "The Godfather", year_of_release: 1972, poster: "images/The Godfather (1972).jpg", link: "the-godfather.html" },
+            { name: "Tumbbad", year_of_release: 2018, poster: "images/Tumbbad (2018).jpg", link: "tumbbad.html" },
+            { name: "Wonka", year_of_release: 2023, poster: "images/Wonka (2023).jpg", link: "wonka.html" },
+            { name: "Avengers: Endgame", year_of_release: 2019, poster: "images/Avengers Endgame (2019).jpg", link: "avengers-endgame.html" },
+            { name: "Dune Part Two", year_of_release: 2024, poster: "images/Dune Part Two (2024).jpg", link: "dune-part-two.html" },
+            { name: "Fight Club", year_of_release: 1999, poster: "images/Fight Club (1999).jpeg", link: "fight-club.html" },
+            { name: "Ghostbusters", year_of_release: 2024, poster: "images/Ghostbusters (2024).jpg", link: "ghostbusters.html" },
+            { name: "Iron Man", year_of_release: 2008, poster: "images/Iron Man (2008).jpg", link: "iron-man.html" },
+            { name: "Saving Private Ryan", year_of_release: 1998, poster: "images/Saving Private Ryan (1998).jpg", link: "saving-private-ryan.html" },
+            { name: "The Shawshank Redemption", year_of_release: 1994, poster: "images/The Shawshank Redemption (1994).jpg", link: "shawshank-redemption.html" },
+            { name: "The Silence of the Lambs", year_of_release: 1991, poster: "images/The Silence of the Lambs (1991).jpg", link: "silence-of-the-lambs.html" }
+        ];
+    
+        // Function to search and redirect to the movie page
+        function searchMovie() {
+            const searchInput = document.getElementById('movieSearchInput').value.toLowerCase();
+            const result = movieData.find(movie => movie.name.toLowerCase() === searchInput);
+    
+            if (result) {
+                alert(`Found movie: ${result.name} (${result.year_of_release})`);
+                // Redirect to the movie's detail page (replace with your actual movie URL structure)
+                window.location.href = result.link; // Using the 'link' from movie data
+            } else {
+                alert('Movie not found!');
+            }
+        }
+    
+        // Search on pressing the search button
+        document.getElementById('searchButton').addEventListener('click', searchMovie);
+    
+        // Optional: Search when the user presses enter
+        document.getElementById('movieSearchInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                searchMovie();
+            }
+        });
+    
+        // Function to display movie data (for all movies)
+        function displayMovies() {
+            const movieListContainer = document.getElementById('movieList');
+            movieListContainer.innerHTML = '';  // Clear the previous content
+    
+            movieData.forEach(movie => {
+                const movieDiv = document.createElement('div');
+                movieDiv.classList.add('movie');
+                movieDiv.innerHTML = `
+                    <img src="${movie.poster}" alt="${movie.name}" class="movie-poster" />
+                    <div class="movie-info">
+                        <h3>${movie.name} (${movie.year_of_release})</h3>
+                        <a href="${movie.link}">View Details</a>
+                    </div>
+                `;
+                movieListContainer.appendChild(movieDiv);
+            });
+        }
+    
+        // Display all movies initially
+        displayMovies();
+    
+        
+    
+        // Toggle logout button visibility
+        function toggleLogoutButton() {
+            const logoutButton = document.getElementById('logoutButton');
+            logoutButton.style.display = (logoutButton.style.display === 'block') ? 'none' : 'block';
+        }
+    
+        // Show the first slide initially and start the auto slide
+        showSlide(currentSlide);
+        startAutoSlide();
+    
+        // Session check function
+        async function checkSession() {
+            try {
+                const response = await fetch('/check-session');
+                const data = await response.json();
+    
+                if (data.loggedIn) {
+                    // If logged in, show the logout button
+                    document.getElementById('logoutButton').style.display = 'block';
+                } else {
+                    // If not logged in, hide the logout button and redirect
+                    document.getElementById('logoutButton').style.display = 'none';
+                    window.location.href = 'login.html'; // Redirect to login if not logged in
+                }
+            } catch (error) {
+                console.error('Error checking session:', error);
+            }
+        }
+    
+        // Logout functionality
+        document.getElementById('logoutButton').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/logout', { method: 'POST' });
+                const data = await response.json();
+    
+                if (data.success) {
+                    window.location.href = 'login.html'; // Redirect to login page on successful logout
+                } else {
+                    console.error('Logout failed');
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        });
+    
+        // Call session check on page load
+        checkSession();
+    
+    </script>
+    
+    
+    
+       
+</body>
+</html>
